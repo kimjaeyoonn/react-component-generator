@@ -4,6 +4,8 @@ import { validatePromptLength } from '../utils/validatePrompt';
 interface PromptInputProps {
   onGenerate: (prompt: string) => void;
   isLoading: boolean;
+  history?: string[];
+  onClearHistory?: () => void;
 }
 
 const EXAMPLES = [
@@ -17,7 +19,7 @@ const EXAMPLES = [
 
 const CANDY_TONES = ['candy-pink', 'candy-blue', 'candy-yellow', 'candy-mint'];
 
-export function PromptInput({ onGenerate, isLoading }: PromptInputProps) {
+export function PromptInput({ onGenerate, isLoading, history = [], onClearHistory = () => {} }: PromptInputProps) {
   const [prompt, setPrompt] = useState('');
   const validation = validatePromptLength(prompt);
 
@@ -77,6 +79,26 @@ export function PromptInput({ onGenerate, isLoading }: PromptInputProps) {
           </button>
         ))}
       </div>
+      {history.length > 0 && (
+        <div className="prompt-history">
+          <div className="prompt-history-header">
+            <span className="examples-label">최근 프롬프트</span>
+            <button className="btn-clear-history" onClick={onClearHistory} type="button">
+              기록 지우기
+            </button>
+          </div>
+          {history.map((item, i) => (
+            <button
+              key={`${item}-${i}`}
+              className="history-chip"
+              onClick={() => handleExampleClick(item)}
+              type="button"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

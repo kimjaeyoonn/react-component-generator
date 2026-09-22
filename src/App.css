@@ -441,6 +441,47 @@
   filter: brightness(0.98);
 }
 
+.prompt-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.prompt-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn-clear-history {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  text-decoration: underline;
+}
+
+.history-chip {
+  padding: 8px 12px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #5b4a58;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.history-chip:hover {
+  filter: brightness(0.98);
+}
+
 .error-banner {
   padding: 14px 16px;
   background: #fff0f1;
